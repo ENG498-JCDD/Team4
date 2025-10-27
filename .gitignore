@@ -1,0 +1,9 @@
+.DS_Store
+/dist/
+node_modules/
+yarn-error.log
+.github/workflows/deploy.yml
+
+# VS CODE
+settings.json
+.vscode
