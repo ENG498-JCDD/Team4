@@ -22,6 +22,11 @@ export default {
   // The path to the source root.
   root: "src",
 
+  pages: [
+    {name: "SQ3 Analysis", path: "/SQ3data"},
+  
+  ]
+  
   // Some additional configuration options and their defaults:
   // theme: "default", // try "light", "dark", "slate", etc.
   // header: "", // what to show in the header (HTML)
@@ -36,3 +41,5 @@ export default {
   // preserveExtension: false, // drop .html from URLs
   // preserveIndex: false, // drop /index from URLs
 };
+
+
