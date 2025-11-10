@@ -31,9 +31,20 @@ const counties = data.filter(d => d.County !== "NC - Statewide")
 
 const minBurdenCounty = d3.least(counties, d => d["% Renters Cost Burdened"])
 
+const lowest10Burden = d3.sort(counties, d => d["% Renters Cost Burdened"]).slice(0, 10)
+
+const highest10Burden = d3.sort(counties, (a, b) => d3.descending(a["% Renters Cost Burdened"], b["% Renters Cost Burdened"])).slice(0, 10)
 ```
 
 
 ```js
 minBurdenCounty
+```
+
+```js
+lowest10Burden
+```
+
+```js
+highest10Burden
 ```
