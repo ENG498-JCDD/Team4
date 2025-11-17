@@ -11,6 +11,7 @@ export default {
       name: "Data Processing",
       pages: [
         {name: "Example Processing", path: "/processing-example"},
+        {name: "Updated Processing", path: "/data-processing"}
       ]
     }
   ],
