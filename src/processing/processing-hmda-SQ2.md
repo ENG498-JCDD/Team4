@@ -1,8 +1,9 @@
----
-toc: false
----
 
 # Processing HMDA Mortgage Data (2020-2024)
+
+```js
+import {downloadAsCSV} from "../utils/utils.js";
+```
 
 This page loads and filters all 5 years of NC mortgage data according to our research criteria.
 
@@ -174,8 +175,15 @@ display(Array.from(yearCounts, ([year, count]) => ({
 ## Download Processed Data
 
 ```js
-// we need to get the download button function from Dr. Lindgren
+view(
+  downloadAsCSV(
+    async () => {
+      const csvString = d3.csvFormat(cleanData);
+      return new Blob([csvString], { type: "text/csv" });
+    },
+    "nc_hmda_clean_2020_2024.csv",
+    "Download Clean HMDA Data"
+  )
+);
 ```
-
----
 
