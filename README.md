@@ -11,7 +11,7 @@ This project examines housing affordability and equity issues in North Carolina 
 
 - [Project Tracker](https://docs.google.com/spreadsheets/d/1m0LLibRoDsCXmBZQWE7vGhLynBER3gg9/edit?gid=746129657#gid=746129657)
 
-## Research Questions
+## Specifying Questions
 
 ### SQ1: Eviction Patterns and Demographics
 **Question:** Where in North Carolina are eviction filings and grants most concentrated, and who is most affected?
