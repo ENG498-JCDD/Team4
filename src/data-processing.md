@@ -62,100 +62,87 @@ Inputs.table(cleanWages)
 ```
 
 
-```js
-// Load the CSV's
-const rent2020 = FileAttachment("data/acs/NC_ACS_RENTAL_2020.csv").csv({typed: true})
-const rent2021 = FileAttachment("data/acs/NC_ACS_RENTAL_2021.csv").csv({typed: true})
-const rent2022 = FileAttachment("data/acs/NC_ACS_Rental_2022.csv").csv({typed: true})
-const rent2023 = FileAttachment("data/acs/NC_ACS_Rental_2023.csv").csv({typed: true})
-```
-
-```js 
-// Combine all the ACS year's we are looking at
-const allRental = [
-  ...rent2020.map(d => ({...d, year: 2020})),
-  ...rent2021.map(d => ({...d, year: 2021})),
-  ...rent2022.map(d => ({...d, year: 2022})),
-  ...rent2023.map(d => ({...d, year: 2023}))
-];
-
-display (`Total rental records loaded: ${allRental.length.toLocaleString()}`)
-// Filter the rows by RENTGRS and COUNTYFIP
-const filteredRental = allRental.filter( d => {
-  const isRenter = d.RENTGRS > 0
-  const hasCounty = d.COUNTYFIP > 0
-  return isRenter && hasCounty
-
-
-})
-display(`Filtered to ${filteredRental.length.toLocaleString()} individual renter records.`)
-```
-
 
 ```js
-// Use d3.group to summarize all of the data, taking all the individual renters and grouping them.
-const rentGrouped = d3.group(
-  filteredRental,
-  d => String(d.YEAR),
+const zillowRent = FileAttachment("data/County_zori_uc_sfrcondomfr_sm_sa_month (1).csv").csv({typed: true})
+```
 
-// Create and match the countyfip codes
-  d => {
-    const countyCode = ("00" + String(parseInt(d.COUNTYFIP, 10))).slice(-3)
-  return "37" + countyCode
+```js
+const ncZillow = zillowRent.filter( d => d.StateName === "NC")
 
 
-  }
 
+const specificRent = ncZillow.flatMap(county => {
+  return Object.entries(county)
+    .filter(([key, value]) => key.startsWith("202") && value)
+    .map(([key, value]) => {
+      const countyCode = ("00" + String(parseInt(county.MunicipalCodeFIPS, 10))).slice(-3);
+      return {
+        county_fips: "37" + countyCode,
+        year: key.slice(0, 4),
+        rent: value
+      };
+    });
+});
+
+
+```
+
+```js
+Inputs.table(specificRent)
+```
+
+```js
+const rentMap = d3.rollup(
+  specificRent,
+  v => d3.mean(v, d => d.rent),
+  d => d.year,
+  d => d.county_fips
 )
-// Convert the data into an array, looping through each year and county
-const aggregatedRent = []
-for (const[year, counties] of rentGrouped) {
-  for (const [fips, people] of counties) {
-    aggregatedRent.push({
-      year: year,
-      county_fips: fips,
-      median_gross_rent: d3.median(people, d => d.RENTGRS)
 
-
-    })
+const annualRent = []
+  for (const [year, counties] of rentMap) {
+    for (const [fips, avgRent] of counties) {
+      annualRent.push({
+        year: year,
+        county_fips: fips,
+        avg_monthly_rent: avgRent
+  
+      })
+    }
   }
-}
-display (`Aggregated to ${aggregatedRent.length.toLocaleString()} NC county-year rent records`)
+
+display (`Processed ${annualRent.length.toLocaleString()} annual rent records`)
+
 ```
 
 ```js
-Inputs.table(aggregatedRent)
-```
-
-```js
-//  Create an array to hold the combined data from rent and wages
 const combinedData = []
 
 for (const wageRow of cleanWages) {
 
-let matchingRent = null
-// Loop over the rows to find matches
-for (const rentRow of aggregatedRent) {
-  if (rentRow.year === wageRow.year && rentRow.county_fips === wageRow.county_fips) {
-  matchingRent = rentRow.median_gross_rent
-}
-}
+  let matchingRentRow = null 
+  
+  for (const rentRow of annualRent) {
+    if (rentRow.year === wageRow.year && rentRow.county_fips === wageRow.county_fips) {
+      matchingRentRow = rentRow
+    }
+  }
+  const rent = matchingRentRow ? matchingRentRow.avg_monthly_rent : null
 
-// Push the new data into the final array
   combinedData.push({
     year: wageRow.year,
     county_fips: wageRow.county_fips,
     county_name: wageRow.county_name,
     avg_annual_pay: wageRow.avg_annual_pay,
     avg_annual_weekly_wage: wageRow.avg_annual_weekly_wage,
-    median_gross_rent: matchingRent
+    avg_monthly_rent: rent,
   })
+
+
 }
+display (`Combined dataset ready: ${combinedData.length.toLocaleString()} records`)
 
-```
-
-```js
-display(`Combined dataset ready: ${combinedData.length.toLocaleString()} records. `)
 ```
 
 ```js
