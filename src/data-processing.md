@@ -148,3 +148,24 @@ display (`Combined dataset ready: ${combinedData.length.toLocaleString()} record
 ```js
 Inputs.table(combinedData)
 ```
+
+```js
+
+downloadAsCSV(
+  d3.csvFormat(combinedData), 
+  "nc_wages_and_rent_2020_2025.csv", 
+  "Download Data"
+)
+
+```
+
+```js
+
+const analyzedData = combinedData.map(d => {
+
+
+}
+
+)
+
+```
