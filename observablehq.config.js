@@ -1,7 +1,7 @@
 // See https://observablehq.com/framework/config for documentation.
 export default {
   // The app’s title; used in the sidebar and webpage titles.
-  title: "Team 4 - Update Me!",
+  title: "Housing Affordability and Equity in North Carolina",
 
   // The pages and sections in the sidebar. If you don’t specify this option,
   // all pages will be listed in alphabetical order. Listing pages explicitly
@@ -19,6 +19,12 @@ export default {
       pages: [
         {name: "Example Processing", path: "/processing-example"},
         {name: "HMDA Processing (2020-2024)", path: "/processing/processing-hmda-SQ2"}
+      ]
+    },
+    {
+      name: "Data Analysis",
+      pages: [
+        {name: "SQ2: Mortgage Discrimination Analysis", path: "/analysis/analysis-hmda-SQ2"}
       ]
     }
   ],
