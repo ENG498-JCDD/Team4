@@ -1,12 +1,18 @@
 # Updated processing for SQ3
+```js
+
+import {downloadAsCSV} from "../utils/utils.js";
+
+```
+
 
 ```js
 // Load the CSV's
-const wages2020 = FileAttachment("data/2020wages.csv").csv({typed: true})
-const wages2021 = FileAttachment("data/2021wages.csv").csv({typed: true})
-const wages2022 = FileAttachment("data/2022wages.csv").csv({typed: true})
-const wages2023 = FileAttachment("data/2023wages.csv").csv({typed: true})
-const wages2024 = FileAttachment("data/2024wages.csv").csv({typed: true})
+const wages2020 = FileAttachment("../data/SQ3-Data/2020wages.csv").csv({typed: true})
+const wages2021 = FileAttachment("../data/SQ3-Data/2021wages.csv").csv({typed: true})
+const wages2022 = FileAttachment("../data/SQ3-Data/2022wages.csv").csv({typed: true})
+const wages2023 = FileAttachment("../data/SQ3-Data/2023wages.csv").csv({typed: true})
+const wages2024 = FileAttachment("../data/SQ3-Data/2024wages.csv").csv({typed: true})
 
 ```
 
@@ -41,7 +47,7 @@ return isNC && isCounty && isTotalOwn && isTotalIndustry
  const countyCode = ("00" + String(parseInt(d.Cnty, 10))).slice(-3);
  const countyFIPS = "37" + countyCode;
     
-    // Return the new data classified about 
+    // Return the new data classified by the columns I am interested in
     return {
       year: String(d.Year),
       county_fips: countyFIPS,
@@ -64,7 +70,7 @@ Inputs.table(cleanWages)
 
 
 ```js
-const zillowRent = FileAttachment("data/County_zori_uc_sfrcondomfr_sm_sa_month (1).csv").csv({typed: true})
+const zillowRent = FileAttachment("../data/SQ3-Data/County_zori_uc_sfrcondomfr_sm_sa_month (1).csv").csv({typed: true})
 ```
 
 ```js
@@ -116,6 +122,8 @@ display (`Processed ${annualRent.length.toLocaleString()} annual rent records`)
 
 ```
 
+**Hello**:
+
 ```js
 const combinedData = []
 
@@ -149,23 +157,18 @@ display (`Combined dataset ready: ${combinedData.length.toLocaleString()} record
 Inputs.table(combinedData)
 ```
 
+
+
 ```js
-
-downloadAsCSV(
-  d3.csvFormat(combinedData), 
-  "nc_wages_and_rent_2020_2025.csv", 
-  "Download Data"
-)
-
+view(
+  downloadAsCSV(
+    async () => {
+      const csvString = d3.csvFormat(combinedData);
+      return new Blob([csvString], { type: "text/csv" });
+    },
+    "nc_wages_and_rent_2020_2025.csv",
+    "Download Clean HMDA Data"
+  )
+);
 ```
-
-```js
-
-const analyzedData = combinedData.map(d => {
-
-
-}
-
-)
-
 ```

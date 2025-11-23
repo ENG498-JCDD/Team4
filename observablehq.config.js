@@ -18,7 +18,8 @@ export default {
       name: "Data Processing",
       pages: [
         {name: "Example Processing", path: "/processing-example"},
-        {name: "HMDA Processing (2020-2024)", path: "/processing/processing-hmda-SQ2"}
+        {name: "HMDA Processing (2020-2024)", path: "/processing/processing-hmda-SQ2"},
+        {name: "Rent & Wages Processing", path: "/processing/SQ3"}
       ]
     }
   ],
