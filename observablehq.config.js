@@ -22,6 +22,12 @@ export default {
         {name: "Example Processing", path: "/processing-example"},
         {name: "HMDA Processing (2020-2024)", path: "/processing/processing-hmda-SQ2"}
       ]
+    },
+    {
+      name: "Data Analysis",
+      pages: [
+        {name: "SQ2: Mortgage Discrimination Analysis", path: "/analysis/analysis-hmda-SQ2"}
+      ]
     }
   ],
 
