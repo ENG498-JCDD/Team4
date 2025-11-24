@@ -21,6 +21,13 @@ export default {
         {name: "HMDA Processing (2020-2024)", path: "/processing/processing-hmda-SQ2"},
         {name: "Rent & Wages Processing", path: "/processing/SQ3"}
       ]
+    },
+    {
+      name: "Analysis",
+      pages: [
+        {name: "Rent and Wages Analysis", path: "/analysis/analysis-rent-wages-SQ3"},
+        
+      ]
     }
   ],
 
