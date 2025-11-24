@@ -1,9 +1,9 @@
 // See https://observablehq.com/framework/config for documentation.
 export default {
-  // The app’s title; used in the sidebar and webpage titles.
-  title: "Housing Affordability and Equity in North Carolina",
+  // The app's title; used in the sidebar and webpage titles.
+  title: "Housing Affordability and Equity in NC",
 
-  // The pages and sections in the sidebar. If you don’t specify this option,
+  // The pages and sections in the sidebar. If you don't specify this option,
   // all pages will be listed in alphabetical order. Listing pages explicitly
   // lets you organize them into sections and have unlisted pages.
   pages: [
@@ -17,6 +17,8 @@ export default {
     {
       name: "Data Processing",
       pages: [
+        {name: "SQ1: Evictions + Demographics", path: "/processing/processing-evictions-demographics-SQ1"},
+        {name: "SQ2: HMDA Mortgage Data", path: "/processing/processing-hmda-SQ2"}
         {name: "Example Processing", path: "/processing-example"},
         {name: "HMDA Processing (2020-2024)", path: "/processing/processing-hmda-SQ2"}
       ]
