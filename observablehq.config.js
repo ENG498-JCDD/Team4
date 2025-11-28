@@ -20,7 +20,8 @@ export default {
         {name: "SQ1: Evictions + Demographics", path: "/processing/processing-evictions-demographics-SQ1"},
         {name: "SQ2: HMDA Mortgage Data", path: "/processing/processing-hmda-SQ2"}
         {name: "Example Processing", path: "/processing-example"},
-        {name: "HMDA Processing (2020-2024)", path: "/processing/processing-hmda-SQ2"}
+        {name: "HMDA Processing (2020-2024)", path: "/processing/processing-hmda-SQ2"},
+        {name: "Rent & Wages Processing", path: "/processing/SQ3"}
       ]
     },
     {
