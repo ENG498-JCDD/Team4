@@ -17,6 +17,11 @@ export default {
     {
       name: "Data Processing",
       pages: [
+<<<<<<< Updated upstream
+=======
+        {name: "SQ1: Evictions + Demographics", path: "/processing/processing-evictions-demographics-SQ1"},
+        {name: "SQ2: HMDA Mortgage Data", path: "/processing/processing-hmda-SQ2"},
+>>>>>>> Stashed changes
         {name: "Example Processing", path: "/processing-example"},
         {name: "HMDA Processing (2020-2024)", path: "/processing/processing-hmda-SQ2"},
         {name: "Rent & Wages Processing", path: "/processing/SQ3"}
@@ -25,8 +30,13 @@ export default {
     {
       name: "Analysis",
       pages: [
+<<<<<<< Updated upstream
         {name: "Rent and Wages Analysis", path: "/analysis/analysis-rent-wages-SQ3"},
         
+=======
+        {name: "SQ2: Mortgage Discrimination Analysis", path: "/analysis/analysis-hmda-SQ2"},
+        {name: "SQ3: Rent & Wage Analysis", path: "/analysis/analysis-rent-wages-SQ3"}
+>>>>>>> Stashed changes
       ]
     }
   ],

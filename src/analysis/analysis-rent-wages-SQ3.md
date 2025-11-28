@@ -2,6 +2,12 @@
 
 ```js
 import {downloadAsCSV} from "../utils/utils.js"
+<<<<<<< Updated upstream
+=======
+import * as d3 from "npm:d3";
+import * as Plot from "npm:@observablehq/plot";
+import * as topojson from "npm:topojson-client";
+>>>>>>> Stashed changes
 ```
 
 ```js
@@ -70,7 +76,11 @@ const growthAnalysis = averages.map(d => {
     return {
         year: d.year,
         "Avg. Yearly Wage": d.avg_wage.toFixed(0),
+<<<<<<< Updated upstream
         "Avg Yearly Rent": d.avg_rent.toFixed(0),
+=======
+        "Avg. Yearly Rent": d.avg_rent.toFixed(0),
+>>>>>>> Stashed changes
         "Wage Growth": wageGrowth.toFixed(1),
         "Rent Growth": rentGrowth.toFixed(1),
         "Gap": gap.toFixed(1)
