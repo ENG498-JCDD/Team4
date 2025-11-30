@@ -17,9 +17,10 @@ export default {
     {
       name: "Data Processing",
       pages: [
+        {name: "Example Processing", path: "/processing-example"},
         {name: "SQ1: Evictions + Demographics", path: "/processing/processing-evictions-demographics-SQ1"},
         {name: "SQ2: HMDA Mortgage Data", path: "/processing/processing-hmda-SQ2"},
-        {name: "Example Processing", path: "/processing-example"}
+        {name: "Rent & Wages Processing", path: "/processing/SQ3"}
       ]
     },
     {
