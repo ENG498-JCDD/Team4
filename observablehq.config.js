@@ -20,19 +20,18 @@ export default {
         {name: "SQ1: Evictions + Demographics", path: "/processing/processing-evictions-demographics-SQ1"},
         {name: "SQ2: HMDA Mortgage Data", path: "/processing/processing-hmda-SQ2"},
         {name: "Example Processing", path: "/processing-example"},
-        {name: "HMDA Processing (2020-2024)", path: "/processing/processing-hmda-SQ2"},
-        {name: "Rent & Wages Processing", path: "/processing/SQ3"}
+        {name: "SQ1: Evictions + Demographics", path: "/processing/processing-evictions-demographics-SQ1"},
+        {name: "SQ2: HMDA Mortgage Data", path: "/processing/processing-hmda-SQ2"},
+        {name: "SQ3: Rent & Wages Processing", path: "/processing/SQ3"}
       ]
     },
     {
       name: "Data Analysis",
       pages: [
-        {name: "SQ2: Mortgage Discrimination Analysis", path: "/analysis/analysis-hmda-SQ2"},
-        {name: "SQ3: Rent Burden Analysis", path: "/analysis/analysis-rent-wages-SQ3"}
+        {name: "SQ2: Mortgage Discrimination Analysis", path: "/analysis/analysis-hmda-SQ2"}
       ]
     }
   ],
-
 
   // Content to add to the head of the page, e.g. for a favicon:
   head: '<link rel="icon" href="observable.png" type="image/png" sizes="32x32">',
