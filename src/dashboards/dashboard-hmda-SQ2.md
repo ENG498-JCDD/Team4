@@ -18,10 +18,10 @@ import * as d3 from "npm:d3";
 
 ```js
 // Load the pre-calculated summary data from analysis
-const denialByRace = FileAttachment("analysis/hmda_denial_rates_by_race (1).csv").csv({typed: true});
-const incomeGaps = FileAttachment("analysis/hmda_income_controlled_gaps (1).csv").csv({typed: true});
-const countyGaps = FileAttachment("analysis/hmda_all_county_disparities.csv").csv({typed: true});
-const yearTrends = FileAttachment("analysis/hmda_year_trends.csv").csv({typed: true});
+const denialByRace = FileAttachment("../analysis/hmda_denial_rates_by_race (1).csv").csv({typed: true});
+const incomeGaps = FileAttachment("../analysis/hmda_income_controlled_gaps (1).csv").csv({typed: true});
+const countyGaps = FileAttachment("../analysis/hmda_all_county_disparities.csv").csv({typed: true});
+const yearTrends = FileAttachment("../analysis/hmda_year_trends.csv").csv({typed: true});
 ```
 
 ```js
