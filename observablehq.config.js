@@ -8,10 +8,9 @@ export default {
   // lets you organize them into sections and have unlisted pages.
   pages: [
     {
-      name: "Examples",
+      name: "Dashboards",
       pages: [
-        {name: "Dashboard", path: "/example-dashboard"},
-        {name: "Report", path: "/example-report"},
+        {name: "Example", path: "/example-dashboard"},
         {name: "SQ3 Dashboard", path: "/dashboards/SQ3dashboard"},
         {name: "SQ2 Dashboard", path: "/dashboards/dashboard-hmda-SQ2"}
       ]
@@ -19,8 +18,6 @@ export default {
     {
       name: "Data Processing",
       pages: [
-        {name: "SQ1: Evictions + Demographics", path: "/processing/processing-evictions-demographics-SQ1"},
-        {name: "SQ2: HMDA Mortgage Data", path: "/processing/processing-hmda-SQ2"},
         {name: "Example Processing", path: "/processing-example"},
         {name: "SQ1: Evictions + Demographics", path: "/processing/processing-evictions-demographics-SQ1"},
         {name: "SQ2: HMDA Mortgage Data", path: "/processing/processing-hmda-SQ2"},
@@ -30,6 +27,7 @@ export default {
     {
       name: "Data Analysis",
       pages: [
+        {name: "SQ1: Eviction Analysis", path: "/analysis/analysis-evictions-SQ1"},
         {name: "SQ2: Mortgage Discrimination Analysis", path: "/analysis/analysis-hmda-SQ2"},
         {name: "SQ3: Rent and Wage Analysis", path: "/analysis/analysis-rent-wages-SQ3"}
       ]
