@@ -16,7 +16,7 @@ This page loads and filters all 5 years of NC mortgage data according to our res
 - Income: Valid income data only
 - County: Valid county code only
 
-## Load All Years
+### Load All Years
 
 ```js
 const hmda2020 = FileAttachment("../data/SQ2-Data/state_NC_loan_types_1_loan_purposes_2020.csv").csv({typed: true});
@@ -44,7 +44,7 @@ display(`Total records loaded: ${allYears.length.toLocaleString()}`)
 ```
 **Note on why we use `display()` instead of just printing the variable:** We're using `display()` with a formatted message because `allYears` contains hundreds of thousands of rows. If we just wrote `allYears` here, Observable would try to render the entire dataset as a giant table, which would freeze your browser. The `display()` function lets us show just the count with context ("Total records loaded: 245,873") instead of overwhelming you with raw data. We'll show previews of the actual data in controlled ways (like the first 100 rows) later in the page.
 
-## Apply Filters
+### Apply Filters
 
 **Why we're filtering:** The raw HMDA data includes all kinds of loans - refinances, second mortgages, vacation homes, etc. We only want home purchase loans for people's main residence, and we're focusing on the three racial/ethnic groups where we see the biggest gaps in North Carolina.
 
@@ -91,7 +91,7 @@ const filteredLoans = allYears.filter(d => {
 display(`Filtered to ${filteredLoans.length.toLocaleString()} loans (${((filteredLoans.length / allYears.length) * 100).toFixed(1)}% of total)`)
 ```
 
-## Create Clean Dataset
+### Create Clean Dataset
 
 **What we're doing here:** The raw HMDA data has like 100 columns with confusing names. We're picking out just the variables we need for our analysis and giving them clearer names.
 
@@ -139,7 +139,7 @@ const cleanData = filteredLoans.map(d => {
 });
 ```
 
-## Data Preview
+### Data Preview
 
 **Note:** The table below shows only the first 100 rows to avoid crashing your browser. The full dataset has hundreds of thousands of loans - you can see the exact count above and download the complete file below. 
 
@@ -154,7 +154,7 @@ Inputs.table(cleanData.slice(0, 100))
 display(`Clean dataset ready: ${cleanData.length.toLocaleString()} loans`)
 ```
 
-## Verify All Years Are Included
+### Verify All Years Are Included
 
 **Making sure we didn't lose any years:** Since the preview only shows 2020, let's count how many loans we have from each year to confirm everything loaded correctly.
 
@@ -172,7 +172,7 @@ display(Array.from(yearCounts, ([year, count]) => ({
 })))
 ```
 
-## Download Processed Data
+### Download Processed Data
 
 ```js
 view(
