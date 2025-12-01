@@ -13,7 +13,8 @@ const joinedData = FileAttachment("../data/SQ3-Data/nc_wages_and_rent_2020_2025.
 
 ```
 
-**This Analysis looks at the affordability gap in North Carolina from 2020 to 2025. We are comparing the rate of increase for rent against the rate of wage growth**
+This analysis looks at the affordability gap in North Carolina from 2020 to 2025. We are comparing the rate of increase for rent against the rate of wage growth
+
 ```js
 // Process the data
 const data = joinedData.map(d => {
