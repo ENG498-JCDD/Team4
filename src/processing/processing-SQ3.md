@@ -4,8 +4,9 @@
 import {downloadAsCSV} from "../utils/utils.js";
 
 ```
-**This loads all five years of data we are interested in, since we want to focus on 2020-2024, we must load and map all years to combine into one array we can iterate over. Data that is used is from BLS(Wages) and Zillow(Rent).** 
+This loads all five years of data we are interested in, since we want to focus on 2020-2024, we must load and map all years to combine into one array we can iterate over. Data that is used is from BLS (Wages) and Zillow (Rent).
 
+### 1. Load the CSVs
 ```js
 // Load the CSV's
 const wages2020 = FileAttachment("../data/SQ3-Data/2020wages.csv").csv({typed: true})
@@ -26,7 +27,7 @@ const allWages = [
   ...wages2024.map(d => ({...d, year: 2024}))
 ]
 ```
-**NC State code is 37. Additionally, we need to filter for for the specific counties, industries, and job types we are interested in** 
+**NC State code is 37.** Additionally, we need to filter for for the specific **counties**, **industries**, and **job types** we are interested in. 
 ```js
 // Create a new array by filtering the data for only NC Counties
 const cleanWages = allWages
@@ -61,7 +62,7 @@ return isNC && isCounty && isTotalOwn && isTotalIndustry
 display(`Filtered to ${cleanWages.length.toLocaleString()} NC county-year wage records.`)
 
 ```
-**Display an input table to get a first look at the data, and if anything is missing**
+### 2. Display an input table to get a first look at the data, and if anything is missing.
 ```js
 // Show the cleanWages table
 Inputs.table(cleanWages)
@@ -72,7 +73,7 @@ Inputs.table(cleanWages)
 ```js
 const zillowRent = FileAttachment("../data/SQ3-Data/County_zori_uc_sfrcondomfr_sm_sa_month (1).csv").csv({typed: true})
 ```
-**We need to filter for North Carolina, and also filter for only NC Counties as well.**
+### 3. We need to filter for North Carolina, and also filter for only NC Counties as well.
 ```js
 const ncZillow = zillowRent.filter( d => d.StateName === "NC")
 
@@ -97,7 +98,7 @@ const specificRent = ncZillow.flatMap(county => {
 ```js
 Inputs.table(specificRent)
 ```
-**We need to rollup the data to extract the monthly rent figures from the csv.**
+### 4. We need to rollup the data to extract the monthly rent figures from the csv.
 ```js
 const rentMap = d3.rollup(
   specificRent,
@@ -122,7 +123,7 @@ display (`Processed ${annualRent.length.toLocaleString()} annual rent records`)
 
 ```
 
-**Combine the rent and wage data to finish data processing, and to download it as a CSV**:
+### 5. Combine the rent and wage data to finish data processing, and to download it as a CSV:
 
 ```js
 const combinedData = []
