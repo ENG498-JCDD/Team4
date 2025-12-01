@@ -48,6 +48,8 @@ gapData.forEach(row => {
 Plot.plot({
     title: "Rent vs. Wage Growth Gap (2020-2024)",
     subtitle: "Red = Rent grew faster. Blue = Wages grew faster.",
+    height: 1000,
+    width: 2000,
     projection: {
         type: "conic-conformal",
         rotate: [80],
