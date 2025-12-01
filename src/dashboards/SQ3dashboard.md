@@ -7,7 +7,7 @@ toc: false
 
 # Mapping the Rent vs. Wage gap in North Carolina
 
-**This dashboard shows trends relating to rent and wages for the State of North Carolina**
+**This dashboard shows trends relating to rent and wages for the State of North Carolina. SQ3: Since 2020 how much was rent outpaced wages?**
 
 ```js
 
