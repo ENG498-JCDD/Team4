@@ -4,7 +4,7 @@
 import {downloadAsCSV} from "../utils/utils.js";
 
 ```
-**This loads all five years of data we are interested in, since we want to focus on 2020-2024, we must load and map all years to combine into one array we can iterate over** 
+**This loads all five years of data we are interested in, since we want to focus on 2020-2024, we must load and map all years to combine into one array we can iterate over. Data that is used is from BLS(Wages) and Zillow(Rent).** 
 
 ```js
 // Load the CSV's
