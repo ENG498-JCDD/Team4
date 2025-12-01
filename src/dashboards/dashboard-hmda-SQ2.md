@@ -4,11 +4,9 @@ title: Mortgage Discrimination in North Carolina
 toc: false
 ---
 
-# Mapping Mortgage Inequality in North Carolina
+# Are mortgage denial and pricing gaps higher for non-white borrowwers than for white borrowers at similar incomes in NC?
 
-<div class="note" label="Why This Data Exists">
-
-**The Home Mortgage Disclosure Act (HMDA) exists because discrimination was exposed.** This dashboard reveals patterns of systemic inequality in lending, positioning Black and Latino borrowers differently than white borrowers, even at similar income levels.
+This dashboard reveals patterns of systemic inequality in lending, positioning Black and Latino borrowers differently than white borrowers, even at similar income levels.
 
 </div>
 
