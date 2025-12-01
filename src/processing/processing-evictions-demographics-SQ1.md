@@ -21,7 +21,7 @@ This page loads and merges eviction filing data with county demographics (2020-2
 6. Export clean combined dataset
 
 
-## Load Eviction Data
+### 1. Load Eviction Data
 
 ```js
 const evictions = FileAttachment("../data/SQ1/SQ1_eviction_filing_data.csv").csv({typed: true});
@@ -32,7 +32,7 @@ evictions
 ```
 
 
-## Load Demographics Data (2020-2023)
+### 2. Load Demographics Data (2020-2023)
 
 ```js
 const demo2020 = FileAttachment("../data/SQ1/SQ1_demographic_data_2020 - 2020.csv").csv({typed: true});
@@ -58,7 +58,7 @@ demo2022
 demo2023
 ```
 
-## Filter 1: Parse Eviction Dates and Extract Year
+#### Filter 1: Parse Eviction Dates and Extract Year
 
 ```js
 const evictionsWithYear = evictions.map(d => {
@@ -78,7 +78,7 @@ const evictionsWithYear = evictions.map(d => {
 evictionsWithYear
 ```
 
-## Filter 2: Remove Invalid/Missing Data
+#### Filter 2: Remove Invalid/Missing Data
 
 ```js
 const cleanEvictions = evictionsWithYear.filter(d => 
@@ -95,7 +95,7 @@ const cleanEvictions = evictionsWithYear.filter(d =>
 cleanEvictions
 ```
 
-## Aggregate Evictions by County and Year
+### 3. Aggregate Evictions by County and Year
 
 Group eviction filings by jurisdiction and year to get annual totals.
 
@@ -125,7 +125,7 @@ const evictionTotals = evictionsByCountyYear.flatMap(([jurisdiction, yearData]) 
 evictionTotals
 ```
 
-## Clean Demographics Data
+### Clean Demographics Data
 
 Remove % signs and convert to numbers for easier analysis.
 
@@ -188,7 +188,7 @@ const allDemographics = [...cleanDemo2020, ...cleanDemo2021, ...cleanDemo2022, .
 allDemographics
 ```
 
-## Merge Evictions with Demographics
+### 4. Merge Evictions with Demographics
 
 Match each county-year eviction record with its demographic data.
 
@@ -247,7 +247,7 @@ display(`Successfully merged ${merged.length} county-year records`)
 display(`Failed to merge ${evictionTotals.length - merged.length} records (missing demographic data)`)
 ```
 
-## Filter 3: Keep Only Complete Years
+#### Filter 3: Keep Only Complete Years
 
 Some counties may have partial data (not all 12 months). Flag these for transparency.
 
@@ -267,7 +267,7 @@ display(`${completeYears.length} county-years with complete data (12 months)`)
 display(`${incompleteYears.length} county-years with incomplete data`)
 ```
 
-## Preview Clean Data
+### Preview Clean Data
 
 ```js
 Inputs.table(cleanData.slice(0, 20), {
@@ -295,16 +295,16 @@ Inputs.table(cleanData.slice(0, 20), {
 })
 ```
 
-**jurisdiction**: County name in North Carolina 
-**year**: Year of the data (2020, 2021, 2022, or 2023) 
-**total_evictions**: Total number of eviction filings in that county-year 
-**evictions_per_1000**: Eviction rate per 1,000 residents (adjusted for population size) 
-**data_completeness**: Percentage of months with data (100% = all 12 months) 
-**percent_black**: % of population that is Black/African American 
-**percent_hispanic**: % of population that is Hispanic/Latino 
-**percent_white**: % of population that is White 
+ - **jurisdiction**: County name in North Carolina 
+ - **year**: Year of the data (2020, 2021, 2022, or 2023) 
+ - **total_evictions**: Total number of eviction filings in that county-year 
+ - **evictions_per_1000**: Eviction rate per 1,000 residents (adjusted for population size) 
+ - **data_completeness**: Percentage of months with data (100% = all 12 months) 
+ - **percent_black**: % of population that is Black/African American 
+ - **percent_hispanic**: % of population that is Hispanic/Latino 
+ - **percent_white**: % of population that is White 
 
-## Download Clean Dataset
+### 6. Download Clean Dataset
 
 ```js
 view(
@@ -319,9 +319,7 @@ view(
 );
 ```
 
-**Ready for analysis:**
-
-Based on the above, we can use the clean data to analyse the following: 
+**Based on the above, we can use the clean data to analyse the following:** 
 
 - Geographic patterns (which counties have highest eviction rates)
 - Relationship between race/ethnicity and evictions
