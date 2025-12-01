@@ -1,4 +1,4 @@
-# Evictions and Rent in North Carolina (2019-2024)
+# Evictions and Rent in North Carolina (2019-2025)
 North Carolina renters are under pressure. Eviction filings jumped and many cases are granted, as shown in [Mecklenburg’s FY24 report](https://mecklenburghousingdata.org/wp-content/uploads/2020/06/Key-Findings_Housing-Instability_Charlotte-Mecklenburg-State-of-Housing-Instability-and-Homelessness-Report-2024.pdf) (37% more filings; 65% granted). Rents have risen since 2019 (about +38% for a modest 2-bedroom), while wages haven’t kept up everywhere. At the same time, large investors own a growing share of homes and apartments, which many local reports connect to affordability strain. State analysts also show cost burdens rising across urban and rural NC.
 
 ## Hypothesis
