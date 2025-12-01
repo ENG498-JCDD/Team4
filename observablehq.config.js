@@ -11,7 +11,9 @@ export default {
       name: "Examples",
       pages: [
         {name: "Dashboard", path: "/example-dashboard"},
-        {name: "Report", path: "/example-report"}
+        {name: "Report", path: "/example-report"},
+        {name: "SQ3 Dashboard", path: "/dashboards/SQ3dashboard"},
+        {name: "SQ2 Dashboard", path: "/dashboards/dashboard-hmda-SQ2"}
       ]
     },
     {
@@ -28,7 +30,8 @@ export default {
     {
       name: "Data Analysis",
       pages: [
-        {name: "SQ2: Mortgage Discrimination Analysis", path: "/analysis/analysis-hmda-SQ2"}
+        {name: "SQ2: Mortgage Discrimination Analysis", path: "/analysis/analysis-hmda-SQ2"},
+        {name: "SQ3: Rent and Wage Analysis", path: "/analysis/analysis-rent-wages-SQ3"}
       ]
     }
   ],
