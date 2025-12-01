@@ -12,7 +12,8 @@ export default {
       pages: [
         {name: "Example", path: "/example-dashboard"},
         {name: "SQ3 Dashboard", path: "/dashboards/SQ3dashboard"},
-        {name: "SQ2 Dashboard", path: "/dashboards/dashboard-hmda-SQ2"}
+        {name: "SQ2 Dashboard", path: "/dashboards/dashboard-hmda-SQ2"},
+        {name: "SQ1 Dashboard", path: "/dashboards/dashboard-evictions-SQ1"}
       ]
     },
     {
