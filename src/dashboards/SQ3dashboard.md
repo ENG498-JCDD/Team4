@@ -94,7 +94,7 @@ Plot.plot({
 
 
 Plot.plot({
-    title: "Rent v Wage Scatter Plot",
+    title: "Rent v Wage since 2020 Scatter Plot",
     grid: true,
     aspectRatio: 1,
     x: {label: "Wage Growth (%)", domain: [-10, 50]},
@@ -175,7 +175,7 @@ Plot.plot({
 
 Plot.plot({
     title: "Trend: Average Monthly Rent (2020-2024)",
-    subtitle: "Rents exploded in 2021 and has outpaced wages.",
+    subtitle: "Rents exploded in 2021 and has outpaced wages. NC Average.",
     marginTop: 40,
     y: {grid: true, label: "Monthly Rent ($)", domain: [1100, 1700]},
     x: {label: null},
@@ -195,7 +195,7 @@ Plot.plot({
 ```js
 Plot.plot({
     title: "Trend: Rent Burden (% of Income)",
-    subtitle: "Percentage of the average paycheck spent on rent.",
+    subtitle: "Percentage of the average paycheck spent on rent. NC Average.",
     marginTop: 60,
     y: {
         grid: true,
