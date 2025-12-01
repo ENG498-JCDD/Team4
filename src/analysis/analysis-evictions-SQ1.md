@@ -11,9 +11,9 @@ import * as d3 from "npm:d3";
 
 This page analyzes the relationship between eviction filings and county demographics in North Carolina (2020-2023).
 
-Research Question: Where in North Carolina are eviction filings most concentrated, and who is most affected?
+*Research Question:* Where in North Carolina are eviction filings most concentrated, and who is most affected?
 
-Analytical Approach: We examine geographic patterns and demographic correlations at the county level to identify where eviction filings are concentrated and which communities bear the greatest burden. Our analysis is grounded in critical race theory and structural inequality frameworks, recognizing that evictions are not random events but reflect systemic patterns of power and oppression.
+*Analytical Approach:* We examine geographic patterns and demographic correlations at the county level to identify where eviction filings are concentrated and which communities bear the greatest burden. Our analysis is grounded in critical race theory and structural inequality frameworks, recognizing that evictions are not random events but reflect systemic patterns of power and oppression.
 
 ```js
 const cleanData = FileAttachment("../data/SQ1/clean_nc_evictions_demographics_2020_2023.csv").csv({typed: true}); 
@@ -25,7 +25,7 @@ cleanData
 
 ## Which counties have the highest eviction rates?
 
-We calculate the average eviction rate for every county over the entire 2020-2023 period. This helps us identify counties with persistently high eviction levels, rather than just those that had a single bad year. We rank them to find the "hotspots" for housing instability.
+We calculate the average eviction rate for every county over the entire 2020-2023 period. This helps us identify counties with persistently high eviction levels, rather than just those with a single bad year. We rank them to find the "hotspots" for housing instability.
 
 ```js
 // Top 15 counties by eviction rate (averaged across all years)
@@ -69,7 +69,7 @@ Inputs.table(topCounties, {
 ```
 ---
 
-## How concentrated are evictions geographically?
+## How geographically concentrated are evictions?
 
 We sum up the total evictions in the top 10 and top 20 counties and compare that to the state total. This tells us if the eviction crisis is widespread or if it is highly concentrated in just a few specific areas. High concentration suggests that resources should be targeted to specific jurisdictions.
 
