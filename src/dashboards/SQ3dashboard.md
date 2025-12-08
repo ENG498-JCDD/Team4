@@ -7,7 +7,7 @@ toc: false
 
 # Mapping the Rent vs. Wage gap in North Carolina
 
-**This dashboard shows trends relating to rent and wages for the State of North Carolina.** 
+**This dashboard shows trends relating to rent and wages for the State of North Carolina. North Carolina has been known for its affordability, great schools, and good job opportunities. However, from 2020 to 2024 reveals a shifting landscape, where rent outpaces wage growth.** 
 
 SQ3: Since 2020, by how much have rents outpaced wages in NC?
 
@@ -44,6 +44,8 @@ gapData.forEach(row => {
 
 
 ```
+
+**To understand where affordability is eroding, we calculated the Growth Gap for each county. The metric compares the percentage increase in average rent against the percentage in average wages since 2020.**
 ```js
 
 
@@ -90,7 +92,7 @@ Plot.plot({
 
 
 ```
-
+**While the map shows where the gap exists, this scatter plot reveals the magnitude of the disparity.**
 
 ```js
 
@@ -150,7 +152,7 @@ const yearlyTrends = d3.rollups(
 })).sort((a, b) => a.year - b.year)
 
 ```
-
+**The affordability gap didn't happen overnight. Wages have seen a steady, linear increase. While positive, this growth can be reactive by adjusting slowly to inflation and labor market demands.**
 ```js
 Plot.plot({
     title:  "Trend: Average Annual Pay",
@@ -172,7 +174,7 @@ Plot.plot({
 
 
 ```
-
+**Unlike wages, rent prices did not grow linearly. Note the sharp elbow in the curve around 2021. This explosion in prices reflects the post-pandemic migration boom to NC, which drastically reduced housing inventory and drove up prices faster than employers could adjust pay. 
 ```js
 
 Plot.plot({
@@ -193,7 +195,7 @@ Plot.plot({
 
 ```
 
-
+**The U.S. Department of Housing and Urban development defines "cost-burdened" families as those who pay more than 30% of their income for housing. As the purple line on the bottom chart rises, it indicates that the average North Carolinian is moving above this threshold.**
 ```js
 Plot.plot({
     title: "Trend: Rent Burden (% of Income)",
