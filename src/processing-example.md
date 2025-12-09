@@ -1,4 +1,4 @@
-# Processing Data per Year
+# Processing ACS Data per Year
 
 - Due to size issues, there are CSV files per year 2012-2023.
 - See the `./data/acs/CODEBOOK.md` file to understand the values per column.

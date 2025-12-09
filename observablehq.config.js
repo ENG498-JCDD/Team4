@@ -18,7 +18,7 @@ export default {
     {
       name: "Data Processing",
       pages: [
-        {name: "Example Processing", path: "/processing-example"},
+        {name: "ACS Census", path: "/processing-example"},
         {name: "SQ1: Evictions + Demographics", path: "/processing/processing-evictions-demographics-SQ1"},
         {name: "SQ2: HMDA Mortgage Data", path: "/processing/processing-hmda-SQ2"},
         {name: "SQ3: Rent & Wages Processing", path: "/processing/processing-SQ3"}
@@ -45,7 +45,7 @@ export default {
   // header: "", // what to show in the header (HTML)
   footer: `Created by Justin Watson, Ademola Adepoju, and Madison Greenstein. | <a href="https://jcddtc.netlify.app/" target="_blank" rel="noopenner noreferrer">NCSU ENG 583 - Justice-Centered Data Design in TPC</a>`, // what to show in the footer (HTML)
   // sidebar: true, // whether to show the sidebar
-  // toc: true, // whether to show the table of contents
+  toc: true, // whether to show the table of contents
   // pager: true, // whether to show previous & next links in the footer
   // output: "dist", // path to the output root for build
   // search: true, // activate search
