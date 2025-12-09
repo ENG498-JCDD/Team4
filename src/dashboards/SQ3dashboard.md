@@ -4,18 +4,14 @@ title: Rent vs Wages Dashboard
 toc: false
 ---
 
-
 # Mapping the Rent vs. Wage gap in North Carolina
 
-**This dashboard shows trends relating to rent and wages for the State of North Carolina. North Carolina has been known for its affordability, great schools, and good job opportunities. However, from 2020 to 2024 reveals a shifting landscape, where rent outpaces wage growth.** 
+This dashboard shows trends relating to rent and wages for the State of North Carolina. North Carolina has been known for its affordability, great schools, and good job opportunities. However, from 2020 to 2024 reveals a shifting landscape, where rent outpaces wage growth.
 
-SQ3: Since 2020, by how much have rents outpaced wages in NC?
+## Since 2020, by how much have rents outpaced wages in NC?
 
 ```js
-
-
 const gapData = FileAttachment("../data/SQ3-Data/sq3_county_affordability_gap.csv").csv({typed: true})
-
 ```
 
 
@@ -40,15 +36,19 @@ gapData.forEach(row => {
     nameLookup.set(shortName, row)
     }
 })
-
-
-
 ```
 
-**To understand where affordability is eroding, we calculated the Growth Gap for each county. The metric compares the percentage increase in average rent against the percentage in average wages since 2020.**
+<!-- LINDGREN
+  - Use headings like the other pages to frame the main finding to give presence to
+  - Could have linked to your data processing and analysis notebooks to clarify where this data came from.
+-->
+<div class="note" label="What the Statistics Reveal">
+  <p>
+    To understand where affordability is eroding, we calculated the Growth Gap for each county. The metric compares the percentage increase in average rent against the percentage in average wages since 2020.
+  </p>
+</div>
+
 ```js
-
-
 Plot.plot({
     title: "Rent vs. Wage Growth Gap (2020-2024)",
     subtitle: "Red = Rent grew faster. Blue = Wages grew faster.",
@@ -92,11 +92,18 @@ Plot.plot({
 
 
 ```
+<!-- LINDGREN
+  I like this transition paragraph here, but it could have punctuated the main takeaway that you wanted the audience to be aware of, rather than simply stating that there's a claim about magnitude.
+-->
+
 **While the map shows where the gap exists, this scatter plot reveals the magnitude of the disparity.**
 
 ```js
+gapData.filter((d) => d.gap_pts > 0)
+```
 
-
+```js
+// LINDGREN: Not assessed, but titles should punctuate the main claim.
 Plot.plot({
     title: "Rent v Wage since 2020 Scatter Plot",
     grid: true,
@@ -105,18 +112,16 @@ Plot.plot({
     y: {label: "Rent Growth (%)", domain: [-10, 50]},
     marks: [
         Plot.line([{x: -10, y: -10}, {x: 80, y: 80}], {stroke: "black", strokeOpacity: 0.5}),
-        Plot.dot(gapData,{
+        // Apply fill as a filter to the data instead.
+        Plot.dot(gapData.filter((d) => d.gap_pts > 0), {
             x: "wage_growth_pct",
             y: "rent_growth_pct",
-            fill: d => d.gap_pts > 0,
-            title: "county_name",
-            tip: {
-                format: {
-                    x: d => `${d.toFixed(1)}%`,
-                    y: d => `${d.toFixed(1)}%`
-                }
-            }
-
+            r: "gap_pts",
+            fill: "red",
+            // title: "county_name",
+            title: (d) =>
+              `${d.county_name.slice(0,-16)}\n\tWage Growth: ${d.wage_growth_pct.toFixed(2)}%\n\tRent Growth: ${d.rent_growth_pct.toFixed(2)}%`,
+            tip: true,
         }),
         Plot.text([{x: 10, y: 60}, {text: ["Rent > Wages"]}]),
         Plot.text([{x: 40, y: 10}, {text: ["Wages > Rent"]}])
@@ -147,12 +152,16 @@ const yearlyTrends = d3.rollups(
     },
     d => d.year
 ).map(([year, stats]) => ({
-    year: year,
-    ...stats
+  // Add as Date() instead
+  year: new Date( String(year)+"-01-01" ),
+  ...stats
 })).sort((a, b) => a.year - b.year)
-
 ```
-**The affordability gap didn't happen overnight. Wages have seen a steady, linear increase. While positive, this growth can be reactive by adjusting slowly to inflation and labor market demands.**
+
+## The affordability gap didn't happen overnight
+
+Wages have seen a steady, linear increase. While positive, this growth can be reactive by adjusting slowly to inflation and labor market demands.
+
 ```js
 Plot.plot({
     title:  "Trend: Average Annual Pay",
@@ -170,32 +179,43 @@ Plot.plot({
         })
     ]
 })
-
-
-
 ```
-**Unlike wages, rent prices did not grow linearly. Note the sharp elbow in the curve around 2021. This explosion in prices reflects the post-pandemic migration boom to NC, which drastically reduced housing inventory and drove up prices faster than employers could adjust pay. 
+
+### Unlike wages, rent prices did not grow linearly.
+
+Note the sharp elbow in the curve around 2021. This explosion in prices reflects the post-pandemic migration boom to NC, which drastically reduced housing inventory and drove up prices faster than employers could adjust pay.
+
+<!-- Trend: Average Monthly Rent (2020-2024) -->
 ```js
-
 Plot.plot({
-    title: "Trend: Average Monthly Rent (2020-2024)",
-    subtitle: "Rents exploded in 2021 and has outpaced wages. NC Average.",
-    marginTop: 40,
-    y: {grid: true, label: "Monthly Rent ($)", domain: [1100, 1700]},
-    x: {label: null},
-    marks: [
-        Plot.lineY(yearlyTrends, {x: "year", y: "avgRent", strokeWidth: 4}),
-        Plot.dot(yearlyTrends, {x: "year", y: "avgRent", tip:true}),
-        Plot.text(yearlyTrends, {
-            x: "year",
-            y: "avgRent"
-     })
-    ]
+  title: "Trend: Average Monthly Rent (2020-2024)",
+  subtitle: "Rents exploded in 2021 and has outpaced wages. NC Average.",
+  marginTop: 40,
+  y: {
+    grid: true,
+    label: "Monthly Rent ($)",
+    // Use min and max to create these domains dynamically
+    domain: [d3.min(yearlyTrends, (y) => y.avgRent), d3.max(yearlyTrends, (y) => y.avgRent)]
+  },
+  marks: [
+    Plot.lineY(yearlyTrends, {x: "year", y: "avgRent", strokeWidth: 2}),
+    Plot.dot(yearlyTrends, {x: "year", y: "avgRent", tip: true}),
+    Plot.text(
+      yearlyTrends,
+      {
+        x: "year",
+        y: "avgRent"
+      }
+    )
+  ]
 })
-
 ```
 
-**The U.S. Department of Housing and Urban development defines "cost-burdened" families as those who pay more than 30% of their income for housing. As the purple line on the bottom chart rises, it indicates that the average North Carolinian is moving above this threshold.**
+## Increased "Cost-Burdened" for North Carolinans
+
+The U.S. Department of Housing and Urban development defines "cost-burdened" families as those who pay more than 30% of their income for housing. As the purple line on the bottom chart rises, it indicates that the average North Carolinian is moving above this threshold.
+
+<!-- "Trend: Rent Burden (% of Income)" -->
 ```js
 Plot.plot({
     title: "Trend: Rent Burden (% of Income)",
@@ -204,24 +224,40 @@ Plot.plot({
     y: {
         grid: true,
         label: "% of income",
-        domain: [24,40]
+        // Usually, you never want to skew the axes; do so cautiously, as it can manipulate how that data look.
+        // Usually you want to at least start at 0; esp. for ordinals like % values
+        domain: [0, 50]
+        // domain: [24,40]
     },
-    x: {label: null},
+    x: {label: "Year"},
     marks: [
         Plot.ruleY([30], {stroke: "red"}),
-        Plot.text([{year: yearlyTrends[0].year, val: 30}],{
-            x: "year", y: "val", text: ["30% Danger Zone"],
-            fill: "red"
-        }),
-        Plot.lineY(yearlyTrends, {x: "year", y: "burden", stroke: "purple"}),
-        Plot.text(yearlyTrends, {
+        Plot.text(
+          [{year: new Date("2022-01-01"), val: 29}],
+          {
+            x: "year",
+            y: "val",
+            text: [`30% Danger Zone`],
+            fill: "red",
+          }
+        ),
+        Plot.lineY(
+          yearlyTrends,
+          {
+            x: "year",
+            y: "burden",
+            stroke: "black",
+            tip: true,
+          }
+        ),
+        Plot.dot(yearlyTrends, {
             x: "year",
             y: "burden",
         })
     ]
 })
-
-
-
-
 ```
+
+<!-- LINDGREN:
+  MISSING ITEM: Needs a final reflection page to draw out conclusions about your process with our conceptual readings in the course.
+-->

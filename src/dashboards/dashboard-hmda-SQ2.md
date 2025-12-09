@@ -4,9 +4,11 @@ title: Mortgage Discrimination in North Carolina
 toc: false
 ---
 
-# Are mortgage denial and pricing gaps higher for non-white borrowwers than for white borrowers at similar incomes in NC?
+# Are mortgage denial and pricing gaps higher for non-white borrowers than for white borrowers at similar incomes in NC?
 
-This dashboard reveals patterns of systemic inequality in lending, positioning Black and Latino borrowers differently than white borrowers, even at similar income levels.
+<!-- LINDGREN: Some subtle language changes here. -->
+
+This dashboard summarizes patterns of systemic inequality in mortgage lending in North Carolina. Our results indicate Black and Latino borrowers are denied lending more often than white borrowers, even at similar income levels.
 
 </div>
 
@@ -42,27 +44,37 @@ const raceColors = {
 
 ---
 
+<!-- LINDGREN: I made some subtle changes in headings and arrangement to frame your visuals better -->
+
+## What Mortgage Disparity Looks Like Across Race
+
+<div class="note" label="What the Statistics Reveal">
+  <p>
+    Black borrowers get denied at nearly 3x the rate of white borrowers, and Hispanic/Latino borrowers also face significantly higher denial rates. The lending system treats people differently based on race.
+  </p>
+</div>
+
 <!-- Hero Metrics -->
-<div class="grid grid-cols-5">
-  <div class="card">
-    <h2>White Borrowers</h2>
-    <span class="big">${whiteRate.toFixed(1)}%</span>
-    <span class="muted">Denial Rate</span>
-  </div>
+<div class="grid grid-cols-3" style="max-width: 920px">
   <div class="card">
     <h2>Black Borrowers</h2>
     <span class="big">${blackRate.toFixed(1)}%</span>
     <span class="muted">Denial Rate</span>
   </div>
   <div class="card">
-    <h2>Hispanic/Latino Borrowers</h2>
-    <span class="big">${hispanicRate.toFixed(1)}%</span>
+    <h2>White Borrowers</h2>
+    <span class="big">${whiteRate.toFixed(1)}%</span>
     <span class="muted">Denial Rate</span>
   </div>
   <div class="card">
     <h2>Black-White Gap</h2>
     <span class="big">${gap.toFixed(1)}</span>
     <span class="muted">Percentage Points</span>
+  </div>
+  <div class="card">
+    <h2>Hispanic/Latino Borrowers</h2>
+    <span class="big">${hispanicRate.toFixed(1)}%</span>
+    <span class="muted">Denial Rate</span>
   </div>
   <div class="card">
     <h2>Hispanic-White Gap</h2>
@@ -73,14 +85,7 @@ const raceColors = {
 
 ---
 
-## What Disparity Looks Like
-
-<div class="note" label="What Statistics Reveal">
-
- Black borrowers get denied at nearly 3x the rate of white borrowers, and Hispanic/Latino borrowers also face significantly higher denial rates. The lending system treats people differently based on race.
-
-</div>
-
+<!-- denialRatesChart -->
 ```js
 function denialRatesChart(data, {width}) {
   return Plot.plot({
@@ -118,7 +123,7 @@ function denialRatesChart(data, {width}) {
 }
 ```
 
-<div class="grid grid-cols-1">
+<div class="grid">
   <div class="card">
     ${resize((width) => denialRatesChart(denialByRace, {width}))}
   </div>
