@@ -9,7 +9,6 @@ toc: false
 ---
 
 ```js
-import * as d3 from "npm:d3";
 import * as topojson from "npm:topojson-client";
 ```
 

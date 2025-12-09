@@ -13,10 +13,6 @@ This dashboard summarizes patterns of systemic inequality in mortgage lending in
 </div>
 
 ```js
-import * as d3 from "npm:d3";
-```
-
-```js
 // Load the pre-calculated summary data from analysis
 const denialByRace = FileAttachment("../analysis/hmda_denial_rates_by_race (1).csv").csv({typed: true});
 const incomeGaps = FileAttachment("../analysis/hmda_income_controlled_gaps (1).csv").csv({typed: true});
