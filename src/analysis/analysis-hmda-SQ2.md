@@ -6,7 +6,6 @@ toc: true
 
 ```js
 import {downloadAsCSV} from "../utils/utils.js";
-import * as d3 from "npm:d3";
 ```
 
 This analysis looks at whether Black and Latino borrowers face higher mortgage denial rates and interest rates compared to white borrowers at similar income levels in North Carolina. We're checking three things: overall gaps, gaps when income is the same, and where these gaps show up geographically.

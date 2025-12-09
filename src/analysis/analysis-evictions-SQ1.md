@@ -6,7 +6,6 @@ toc: false
 
 ```js
 import {downloadAsCSV} from "../utils/utils.js";
-import * as d3 from "npm:d3";
 ```
 
 This page analyzes the relationship between eviction filings and county demographics in North Carolina (2020-2023).
