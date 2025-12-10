@@ -9,7 +9,6 @@ toc: false
 ---
 
 ```js
-import * as d3 from "npm:d3";
 import * as topojson from "npm:topojson-client";
 ```
 
@@ -104,7 +103,7 @@ This means that in diverse communities, roughly **1 in 70 residents** faces an e
 
 ```js
 // Categorize counties by racial composition
-const getCategory = (data) => {
+const getAvgRacialComposition = (data) => {
   const avgBlack = d3.mean(data, d => d.percent_black);
   const avgHisp = d3.mean(data, d => d.percent_hispanic);
   const avgWhite = d3.mean(data, d => d.percent_white);
@@ -119,7 +118,8 @@ const countyCategories = d3.rollups(
   await evictions, 
   v => ({
     rate: d3.mean(v, d => d.evictions_per_1000),
-    category: getCategory(v)
+    // LINDGREN: Needs better label like `racial_composition`
+    category: getAvgRacialComposition(v)
   }),
   d => d.jurisdiction
 ).map(([county, stats]) => stats);
@@ -177,7 +177,7 @@ const diverseCounties = countyCategories.filter(d => d.category === "Diverse (No
 const diverseCountyNames = new Set(
   d3.rollups(
     await evictions,
-    v => getCategory(v),
+    v => getAvgRacialComposition(v),
     d => d.jurisdiction
   )
   .filter(([county, cat]) => cat === "Diverse (No Single Majority)")
@@ -290,4 +290,3 @@ Plot.plot({
   ]
 })
 ```
-

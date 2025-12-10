@@ -8,18 +8,17 @@ export default {
   // lets you organize them into sections and have unlisted pages.
   pages: [
     {
-      name: "Dashboards",
+      name: "Affordability Across Race in NC",
       pages: [
-        {name: "Example", path: "/example-dashboard"},
-        {name: "SQ3 Dashboard", path: "/dashboards/SQ3dashboard"},
-        {name: "SQ2 Dashboard", path: "/dashboards/dashboard-hmda-SQ2"},
-        {name: "SQ1 Dashboard", path: "/dashboards/dashboard-evictions-SQ1"}
+        {name: "Rent vs. Wages", path: "/dashboards/SQ3dashboard"},
+        {name: "Mortgage Disparity", path: "/dashboards/dashboard-hmda-SQ2"},
+        {name: "Evictions", path: "/dashboards/dashboard-evictions-SQ1"}
       ]
     },
     {
       name: "Data Processing",
       pages: [
-        {name: "Example Processing", path: "/processing-example"},
+        {name: "ACS Census", path: "/processing-example"},
         {name: "SQ1: Evictions + Demographics", path: "/processing/processing-evictions-demographics-SQ1"},
         {name: "SQ2: HMDA Mortgage Data", path: "/processing/processing-hmda-SQ2"},
         {name: "SQ3: Rent & Wages Processing", path: "/processing/processing-SQ3"}
@@ -42,11 +41,11 @@ export default {
   root: "src",
 
   // Some additional configuration options and their defaults:
-  // theme: "default", // try "light", "dark", "slate", etc.
+  // theme: "light", // try "light", "dark", "slate", etc.
   // header: "", // what to show in the header (HTML)
-  // footer: "Built with Observable.", // what to show in the footer (HTML)
+  footer: `Created by Justin Watson, Ademola Adepoju, and Madison Greenstein. | <a href="https://jcddtc.netlify.app/" target="_blank" rel="noopenner noreferrer">NCSU ENG 583 - Justice-Centered Data Design in TPC</a>`, // what to show in the footer (HTML)
   // sidebar: true, // whether to show the sidebar
-  // toc: true, // whether to show the table of contents
+  toc: true, // whether to show the table of contents
   // pager: true, // whether to show previous & next links in the footer
   // output: "dist", // path to the output root for build
   // search: true, // activate search

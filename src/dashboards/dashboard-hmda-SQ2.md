@@ -1,18 +1,16 @@
 ---
 theme: dashboard
 title: Mortgage Discrimination in North Carolina
-toc: false
+toc: true
 ---
 
-# Are mortgage denial and pricing gaps higher for non-white borrowwers than for white borrowers at similar incomes in NC?
+# Are mortgage denial and pricing gaps higher for non-white borrowers than for white borrowers at similar incomes in NC?
 
-This dashboard reveals patterns of systemic inequality in lending, positioning Black and Latino borrowers differently than white borrowers, even at similar income levels.
+<!-- LINDGREN: Some subtle language changes here. -->
+
+This dashboard summarizes patterns of systemic inequality in mortgage lending in North Carolina. Our results indicate Black and Latino borrowers are denied lending more often than white borrowers, even at similar income levels.
 
 </div>
-
-```js
-import * as d3 from "npm:d3";
-```
 
 ```js
 // Load the pre-calculated summary data from analysis
@@ -42,27 +40,37 @@ const raceColors = {
 
 ---
 
+<!-- LINDGREN: I made some subtle changes in headings and arrangement to frame your visuals better -->
+
+## What Mortgage Disparity Looks Like Across Race
+
+<div class="note" label="What the Statistics Reveal">
+  <p>
+    Black borrowers get denied at nearly 3x the rate of white borrowers, and Hispanic/Latino borrowers also face significantly higher denial rates. The lending system treats people differently based on race.
+  </p>
+</div>
+
 <!-- Hero Metrics -->
-<div class="grid grid-cols-5">
-  <div class="card">
-    <h2>White Borrowers</h2>
-    <span class="big">${whiteRate.toFixed(1)}%</span>
-    <span class="muted">Denial Rate</span>
-  </div>
+<div class="grid grid-cols-3" style="max-width: 920px">
   <div class="card">
     <h2>Black Borrowers</h2>
     <span class="big">${blackRate.toFixed(1)}%</span>
     <span class="muted">Denial Rate</span>
   </div>
   <div class="card">
-    <h2>Hispanic/Latino Borrowers</h2>
-    <span class="big">${hispanicRate.toFixed(1)}%</span>
+    <h2>White Borrowers</h2>
+    <span class="big">${whiteRate.toFixed(1)}%</span>
     <span class="muted">Denial Rate</span>
   </div>
   <div class="card">
     <h2>Black-White Gap</h2>
     <span class="big">${gap.toFixed(1)}</span>
     <span class="muted">Percentage Points</span>
+  </div>
+  <div class="card">
+    <h2>Hispanic/Latino Borrowers</h2>
+    <span class="big">${hispanicRate.toFixed(1)}%</span>
+    <span class="muted">Denial Rate</span>
   </div>
   <div class="card">
     <h2>Hispanic-White Gap</h2>
@@ -73,14 +81,7 @@ const raceColors = {
 
 ---
 
-## What Disparity Looks Like
-
-<div class="note" label="What Statistics Reveal">
-
- Black borrowers get denied at nearly 3x the rate of white borrowers, and Hispanic/Latino borrowers also face significantly higher denial rates. The lending system treats people differently based on race.
-
-</div>
-
+<!-- denialRatesChart -->
 ```js
 function denialRatesChart(data, {width}) {
   return Plot.plot({
@@ -118,7 +119,7 @@ function denialRatesChart(data, {width}) {
 }
 ```
 
-<div class="grid grid-cols-1">
+<div class="grid grid-cols-2">
   <div class="card">
     ${resize((width) => denialRatesChart(denialByRace, {width}))}
   </div>
@@ -134,6 +135,7 @@ Even among people earning over $100K, both Black and Hispanic/Latino borrowers f
 
 </div>
 
+<!-- incomeLineData -->
 ```js
 // Prepare data for multi-line chart
 const incomeLineData = incomeGaps.flatMap(d => [
@@ -158,6 +160,7 @@ const incomeLineData = incomeGaps.flatMap(d => [
 const incomeBracketOrder = ["Under $50K", "$50-75K", "$75-100K", "$100-150K", "$150K+"];
 ```
 
+<!-- incomeMultiLineChart -->
 ```js
 function incomeMultiLineChart(data, {width}) {
   return Plot.plot({
@@ -196,12 +199,7 @@ function incomeMultiLineChart(data, {width}) {
 }
 ```
 
-<div class="grid grid-cols-1">
-  <div class="card">
-    ${resize((width) => incomeMultiLineChart(incomeLineData, {width}))}
-  </div>
-</div>
-
+<!-- hispanic_white_gap_pct -->
 ```js
 // ADD: Show gaps for BOTH Black-White AND Hispanic-White
 const gapData = incomeGaps.flatMap(d => [
@@ -218,6 +216,7 @@ const gapData = incomeGaps.flatMap(d => [
 ]);
 ```
 
+<!-- incomeGapBarChart -->
 ```js
 function incomeGapBarChart(data, {width}) {
   return Plot.plot({
@@ -275,7 +274,11 @@ function incomeGapBarChart(data, {width}) {
 }
 ```
 
-<div class="grid grid-cols-1">
+<!-- Income gap charts -->
+<div class="grid grid-cols-2">
+  <div class="card">
+    ${resize((width) => incomeMultiLineChart(incomeLineData, {width}))}
+  </div>
   <div class="card">
     ${resize((width) => incomeGapBarChart(gapData, {width}))}
   </div>
@@ -299,6 +302,7 @@ const top20Counties = reliableCounties
   .slice(0, 20);
 ```
 
+<!-- countyGapChart -->
 ```js
 function countyGapChart(data, {width}) {
   return Plot.plot({
@@ -335,12 +339,7 @@ function countyGapChart(data, {width}) {
 }
 ```
 
-<div class="grid grid-cols-1">
-  <div class="card">
-    ${resize((width) => countyGapChart(top20Counties, {width}))}
-  </div>
-</div>
-
+<!-- reliableHispanicCounties -->
 ```js
 const reliableHispanicCounties = countyGaps.filter(d => d.hispanic_app_count >= 20);
 const top20HispanicCounties = reliableHispanicCounties
@@ -348,6 +347,7 @@ const top20HispanicCounties = reliableHispanicCounties
   .slice(0, 20);
 ```
 
+<!-- hispanicCountyGapChart -->
 ```js
 function hispanicCountyGapChart(data, {width}) {
   return Plot.plot({
@@ -384,7 +384,11 @@ function hispanicCountyGapChart(data, {width}) {
 }
 ```
 
-<div class="grid grid-cols-1">
+<!-- Geo Patterns By Race -->
+<div class="grid grid-cols-2">
+  <div class="card">
+    ${resize((width) => countyGapChart(top20Counties, {width}))}
+  </div>
   <div class="card">
     ${resize((width) => hispanicCountyGapChart(top20HispanicCounties, {width}))}
   </div>
@@ -421,6 +425,7 @@ const combinedDisparityCounties = intersectionCounties.map(d => ({
 })).sort((a, b) => b.combined_gap - a.combined_gap);
 ```
 
+<!-- combinedCountyGapChart -->
 ```js
 function combinedCountyGapChart(data, {width}) {
   return Plot.plot({
@@ -459,7 +464,7 @@ function combinedCountyGapChart(data, {width}) {
 }
 ```
 
-<div class="grid grid-cols-1">
+<div class="grid grid-cols-2">
   <div class="card">
     ${resize((width) => combinedCountyGapChart(combinedDisparityCounties, {width}))}
   </div>
@@ -475,6 +480,7 @@ Did the pandemic make racial gaps worse? Are they narrowing over time? This char
 
 </div>
 
+<!-- yearTrendsChart -->
 ```js
 function yearTrendsChart(data, {width}) {
   return Plot.plot({
@@ -518,7 +524,7 @@ function yearTrendsChart(data, {width}) {
 }
 ```
 
-<div class="grid grid-cols-1">
+<div class="grid grid-cols-2">
   <div class="card">
     ${resize((width) => yearTrendsChart(yearTrends, {width}))}
   </div>

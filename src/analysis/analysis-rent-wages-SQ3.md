@@ -2,8 +2,6 @@
 
 ```js
 import {downloadAsCSV} from "../utils/utils.js"
-import * as d3 from "npm:d3";
-import * as Plot from "npm:@observablehq/plot";
 import * as topojson from "npm:topojson-client";
 ```
 
