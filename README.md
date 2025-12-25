@@ -1,8 +1,5 @@
 # Housing Affordability and Equity in North Carolina (2019-2024)
 
-
-**NOTE FOR NEW PROJECT**: Don't forget to update the `observablehq.config.js` file. Delete this paragraph, when completed.
-
 - Ademola Adepoju
 - Justin Watson
 - Madison Greenstein
